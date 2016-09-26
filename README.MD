@@ -6,9 +6,9 @@ the javax specification for JEE6, but which does not require running in a JEE co
 frameworks.
 
 ## Using validators
-The validators work on annotatons of bean getters. The first write of this actully operated on fields, however
+The validators work on annotatons of bean getters. The first write of this actually operated on fields, however
 if one wants to be opinionated (and perhaps we should be), this breaks encapsulation quite badly, and the
-thing you really want to validate is the public presentation of the values, not thier internal representation.
+thing you really want to validate is the public presentation of the values, not their internal representation.
 
 So, the framework using this library can either have it's beans inherit from the `ValidatableObject` class, or
 call the `ObjectValidator.getInstance().validate(obj)` method. Note that the framework does use reflection in
