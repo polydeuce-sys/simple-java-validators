@@ -1,6 +1,6 @@
 # Simple Java Validators
 This project is really just an excuse to learn about custom Java annotations, since they seem interesting, but not
-necissarily something that I would encounter "in the wild". However it also seems like a useful thing to add
+necessarily something that I would encounter "in the wild". However it also seems like a useful thing to add
 to some of my projects in a very simple and isolated fashion, having an implementation which is similar enough to
 the javax specification for JEE6, but which does not require running in a JEE container or depending on any large
 frameworks.
@@ -19,9 +19,13 @@ do allow for these actions.
 Adding your own validations is fairly simple.
 
 ```@Constraint(validatedBy = MyValidator.class)
+
    @Retention(RetentionPolicy.RUNTIME)
+
    @Target({ElementType.METHOD})
+
    @Inherited
+
    public @interface MyAnnotation{
         aType myConstraint() default myDefault
    }```
