@@ -18,17 +18,15 @@ do allow for these actions.
 ## Writing Custom Validations
 Adding your own validations is fairly simple.
 
-```@Constraint(validatedBy = MyValidator.class)
-
-   @Retention(RetentionPolicy.RUNTIME)
-
-   @Target({ElementType.METHOD})
-
-   @Inherited
-
-   public @interface MyAnnotation{
+```java
+    @Constraint(validatedBy = MyValidator.class)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.METHOD})
+    @Inherited
+    public @interface MyAnnotation{
         aType myConstraint() default myDefault
-   }```
+   }
+```
 
 Define your annotation, and mark the class of the constraint validation using the `@Constraint` annotation.
 The additional criteria (retention, target and inherited) should be specified as above.
