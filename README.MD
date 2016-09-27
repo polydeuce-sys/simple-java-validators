@@ -10,10 +10,30 @@ The validators work on annotatons of bean getters. The first write of this actua
 if one wants to be opinionated (and perhaps we should be), this breaks encapsulation quite badly, and the
 thing you really want to validate is the public presentation of the values, not their internal representation.
 
-So, the framework using this library can either have it's beans inherit from the `ValidatableObject` class, or
-call the `ObjectValidator.getInstance().validate(obj)` method. Note that the framework does use reflection in
-order to find the `Annotation` instances attached to the methods. This does require that the SecurityManager settings
-do allow for these actions.
+So to use a validator one can annotate one's bean getters:
+```
+public class MyConfigBean{
+    private String serviceUrl;
+    private double pollingFrequency;
+
+
+    @Url(protocol={"https"},hostWhitelist={"myserver", "myfailover"})
+    public String getServiceUrl(){
+        return serviceUrl;
+    }
+
+    @DoubleRange(min=1500,max=3000)
+    public Double getPollingFrequency(){
+        return pollingFrequency;
+    }
+}
+```
+An annotated object can then be validated at runtime by calling
+`ObjectValidator.getInstance().validate(obj)`
+or, if the object inherits from `ValidatableObject` by calling the `validate()` method on the object.
+
+Note that the framework does use reflection in order to find the `Annotation` instances attached to the methods.
+This does require that the SecurityManager settings do allow for these actions.
 
 ## Writing Custom Validations
 Adding your own validations is fairly simple.
