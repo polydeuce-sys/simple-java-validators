@@ -1,0 +1,29 @@
+group 'com.polydeuce-sys'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'ivy-publish'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.+'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+        ivyJava(IvyPublication) {
+            from components.java
+        }
+    }
+}
